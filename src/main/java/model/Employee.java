@@ -1,7 +1,5 @@
 package model;
 
-import org.hibernate.annotations.Table;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -11,6 +9,7 @@ import java.util.Objects;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     @Column(name = "first_name")
     private String firstName;
