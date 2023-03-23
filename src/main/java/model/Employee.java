@@ -4,30 +4,30 @@ import java.util.Objects;
 
 public class Employee {
     private int id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private String gender;
     private int age;
-    private int citi_id;
+    private int cityId;
 
     public Employee() {
     }
 
-    public Employee(String first_name, String last_name, String gender, int age, int citi_id) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Employee(String firstName, String lastName, String gender, int age, int cityId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        this.citi_id = citi_id;
+        this.cityId = cityId;
     }
 
-    public Employee(int id, String first_name, String last_name, String gender, int age, int citi_id) {
+    public Employee(int id, String firstName, String lastName, String gender, int age, int cityId) {
         this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        this.citi_id = citi_id;
+        this.cityId = cityId;
     }
 
     public int getId() {
@@ -38,20 +38,20 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getGender() {
@@ -70,12 +70,12 @@ public class Employee {
         this.age = age;
     }
 
-    public int getCiti_id() {
-        return citi_id;
+    public int getCityId() {
+        return cityId;
     }
 
-    public void setCiti_id(int citi_id) {
-        this.citi_id = citi_id;
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     @Override
@@ -83,23 +83,26 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id && age == employee.age && citi_id == employee.citi_id && Objects.equals(first_name, employee.first_name) && Objects.equals(last_name, employee.last_name) && Objects.equals(gender, employee.gender);
+        return id == employee.id && age == employee.age && cityId == employee.cityId
+                                 && Objects.equals(firstName, employee.firstName)
+                                 && Objects.equals(lastName, employee.lastName)
+                                 && Objects.equals(gender, employee.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, first_name, last_name, gender, age, citi_id);
+        return Objects.hash(id, firstName, lastName, gender, age, cityId);
     }
 
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                ", first_name='" + firstName + '\'' +
+                ", last_name='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
-                ", citi_id=" + citi_id +
+                ", citi_id=" + cityId +
                 '}';
     }
 }

@@ -25,11 +25,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, employee.getFirst_name());
-            statement.setString(2, employee.getLast_name());
+            statement.setString(1, employee.getFirstName());
+            statement.setString(2, employee.getLastName());
             statement.setString(3, employee.getGender());
             statement.setInt(4, employee.getAge());
-            statement.setLong(5, employee.getCiti_id());
+            statement.setLong(5, employee.getCityId());
 //            statement.executeQuery();
             int x = statement.executeUpdate();
 
@@ -59,11 +59,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
             while (resultSet.next()) {
                 employee.setId(resultSet.getInt("id"));
-                employee.setFirst_name(resultSet.getString("first_name"));
-                employee.setLast_name(resultSet.getString("last_name"));
+                employee.setFirstName(resultSet.getString("first_name"));
+                employee.setLastName(resultSet.getString("last_name"));
                 employee.setGender(resultSet.getString("gender"));
                 employee.setAge(resultSet.getInt("age"));
-                employee.setCiti_id(resultSet.getInt("city_id"));
+                employee.setCityId(resultSet.getInt("city_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -82,12 +82,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String first_name = resultSet.getString("first_name");
-                String last_name = resultSet.getString("last_name");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
                 String gender = resultSet.getString("gender");
                 int age = resultSet.getInt("age");
-                int city_id = resultSet.getInt("city_id");
-                employees.add(new Employee(id, first_name, last_name, gender, age, city_id));
+                int cityId = resultSet.getInt("city_id");
+                employees.add(new Employee(id, firstName, lastName, gender, age, cityId));
 
             }
         } catch (SQLException e) {
@@ -100,11 +100,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public void updateById(int id, Employee employee) {
         String sql = "UPDATE employee SET first_name = (?), last_name = (?), gender = (?), age = (?), city_id = (?) WHERE id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, employee.getFirst_name());
-            statement.setString(2, employee.getLast_name());
+            statement.setString(1, employee.getFirstName());
+            statement.setString(2, employee.getLastName());
             statement.setString(3, employee.getGender());
             statement.setInt(4, employee.getAge());
-            statement.setInt(5, employee.getCiti_id());
+            statement.setInt(5, employee.getCityId());
             statement.setInt(6, id);
 
             int x = statement.executeUpdate();
