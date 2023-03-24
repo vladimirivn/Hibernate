@@ -19,8 +19,10 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private int cityId;
+
+    @ManyToOne()
+    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+    private City city;
 
     public Employee() {
     }
@@ -114,7 +116,7 @@ public class Employee {
                 ", last_name='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
-                ", citi_id=" + cityId +
+                ", city=" + (city != null ? city.getCityName() : "") +
                 '}';
     }
 }
