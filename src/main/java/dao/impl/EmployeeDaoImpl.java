@@ -23,7 +23,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Employee readById(int id) {
 
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.get(Employee.class, id);
+            Transaction transaction = session.beginTransaction();
+            Employee employee = session.get(Employee.class, id);
+            transaction.commit();
+            return employee;
         }
     }
 
@@ -31,7 +34,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public List<Employee> readAll() {
 
         try ( Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Employee", Employee.class).list();
+            Transaction transaction = session.beginTransaction();
+            List<Employee> employees = session.createQuery("FROM Employee", Employee.class).list();
+            transaction.commit();
+            return  employees;
         }
     }
 
@@ -41,7 +47,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
             Transaction transaction = session.beginTransaction();
             session.update(employee);
             transaction.commit();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
+
     }
 
     @Override
@@ -50,6 +59,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
             Transaction transaction = session.beginTransaction();
             session.delete(employee);
             transaction.commit();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
+
     }
 }
