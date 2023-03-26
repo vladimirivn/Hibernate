@@ -1,51 +1,52 @@
 package dao.impl;
 
 import config.HibernateSessionFactoryUtil;
-import dao.EmployeeDao;
-import model.Employee;
+import dao.CityDao;
+import model.City;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class EmployeeDaoImpl implements EmployeeDao {
+public class CityDaoImpl implements CityDao {
     @Override
-    public void create(Employee employee) {
+    public void create(City city) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.save(employee);
+            session.save(city);
             transaction.commit();
         }
 
     }
 
     @Override
-    public Employee readById(int id) {
+    public City readById(int id) {
 
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            Employee employee = session.get(Employee.class, id);
+            City city = session.get(City.class, id);
             transaction.commit();
-            return employee;
+            return city;
         }
     }
 
     @Override
-    public List<Employee> readAll() {
+    public List<City> readAll() {
 
-        try ( Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            List<Employee> employees = session.createQuery("FROM Employee", Employee.class).list();
+            List<City> cities = session.createQuery("FROM City", City.class).getResultList();
             transaction.commit();
-            return  employees;
+
+            return cities;
         }
     }
 
     @Override
-    public void update(Employee employee) {
-        try ( Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+    public void update(City city) {
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.update(employee);
+            session.update(city);
             transaction.commit();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
@@ -54,10 +55,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public void delete(Employee employee) {
-        try ( Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+    public void delete(City city) {
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.delete(employee);
+            session.delete(city);
             transaction.commit();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
