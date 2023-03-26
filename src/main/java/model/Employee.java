@@ -28,7 +28,7 @@ public class Employee {
     @Column(name = "age")
     private int age;
     @ManyToOne
-    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+    @JoinColumn(name = "city_id")
     private City city;
 
     public Employee(String firstName, String lastName, String gender, int age, City city) {

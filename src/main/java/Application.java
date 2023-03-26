@@ -30,8 +30,7 @@ public class Application {
 
   */
 
-
-        City newCity = new City("New Vasyuki");
+        City newCity = new City("NEW VASYUKI");
         CITY_DAO.create(newCity);
         CITY_DAO.readAll().forEach(System.out::println);
 
@@ -39,7 +38,7 @@ public class Application {
         EMPLOYEE_DAO.create(newPeople);
         EMPLOYEE_DAO.readAll().forEach(System.out::println);
 
-//        System.out.println(CITY_DAO.readById(8));
+        System.out.println(CITY_DAO.readById(8));
 
         CITY_DAO.delete(CITY_DAO.readById(newCity.getCityId()));
         CITY_DAO.readAll().forEach(System.out::println);
